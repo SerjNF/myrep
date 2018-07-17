@@ -2,7 +2,7 @@ package ru.foreman.UI;
 
 
 import ru.foreman.fleet.Point;
-import ru.foreman.localPlay.Control;
+
 import ru.foreman.localPlay.LocalGame;
 
 import javax.swing.*;
@@ -58,7 +58,7 @@ public class CellPanel extends JPanel {
 
             for (int i = 1; i < 11; ++i) {
                 Cell cell = new Cell(new Point(i, j));
-                cell.addActionListener(new Control(cell));
+            //    cell.addActionListener(new Control(cell));
                 this.add(cell);
                 cellList.add(cell);
             }
