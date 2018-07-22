@@ -9,6 +9,7 @@ import java.awt.*;
 public class LocalGame  {
 
     private LocalGame() {
+
         JFrame frame = new JFrame("Локальная игра");
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         frame.setLayout(new GridLayout(1, 2));
