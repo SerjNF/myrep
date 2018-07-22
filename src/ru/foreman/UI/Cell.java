@@ -1,6 +1,6 @@
 package ru.foreman.UI;
 
-import ru.foreman.fleet.Point;
+import ru.foreman.supportAndInterfase.Point;
 
 import javax.swing.*;
 import java.awt.*;
@@ -13,6 +13,7 @@ import java.awt.*;
  */
 public class Cell extends JButton {
     private Point point;
+    private int fleetNumber;
     // размеры, пока не нужны.
     private Dimension dimension = this.getSize();
 
@@ -20,8 +21,9 @@ public class Cell extends JButton {
         super();
     }
 
-    Cell(Point point) {
+    Cell(Point point, int fleetNumber) {
         this.point = point;
+        this.fleetNumber = fleetNumber;
     }
 
     public Point getPoint() {
@@ -66,4 +68,7 @@ public class Cell extends JButton {
     }
 
 
+    public int getFleetNumber() {
+        return fleetNumber;
+    }
 }

@@ -1,8 +1,11 @@
 package ru.foreman.UI;
 
+import ru.foreman.supportAndInterfase.Controller;
+import ru.foreman.localGame.LocalGameController;
+
 import javax.swing.*;
 import java.awt.*;
-import java.util.ArrayList;
+//import java.util.ArrayList;
 
 /**
  * поле одного игрока
@@ -11,12 +14,10 @@ import java.util.ArrayList;
  * @since 06.18
  */
 public class PlayingField extends JPanel {
-    public  ArrayList<Cell> cellList;
     private JLabel northLabel;
     private JLabel southLabel;
-    CellPanel cellPanel;
 
-    public PlayingField() {
+    public PlayingField(int fleetNumber, Controller controller) {
         super();
 
         northLabel = new JLabel("north");
@@ -27,9 +28,9 @@ public class PlayingField extends JPanel {
         southLabel.setHorizontalAlignment(SwingConstants.CENTER);
         southLabel.setHorizontalAlignment(SwingConstants.CENTER);
 
-        cellPanel = new CellPanel();
-        cellList = new ArrayList<>();
-        cellList = cellPanel.getCellList();
+        CellPanel cellPanel = new CellPanel(fleetNumber, controller);
+//        ArrayList<Cell> cellList = new ArrayList<>();
+//        cellList = cellPanel.getCellList();
 
         this.setLayout(new BorderLayout());
         this.add(northLabel, BorderLayout.NORTH);
@@ -37,7 +38,7 @@ public class PlayingField extends JPanel {
         this.add(cellPanel);
     }
 
-    public void setNortLabel(String text) {
+    public void setNorthLabel(String text) {
         northLabel.setText(text);
     }
 
@@ -45,13 +46,6 @@ public class PlayingField extends JPanel {
         southLabel.setText(text);
     }
 
-    public ArrayList<Cell> getCellList(){
-        return cellList;
- }
-
- public void lockCellPanel(){
-        cellPanel.setVisible(true);
- }
 
     /* *******************************************************************************************************************/
 
@@ -62,7 +56,8 @@ public class PlayingField extends JPanel {
      */
     public static void main(String[] arg) {
         JFrame frame = new JFrame();
-        PlayingField panel = new PlayingField();
+        PlayingField panel = new PlayingField(1, new LocalGameController(frame));
+
 
         frame.getContentPane().add(panel);
         frame.setVisible(true);
