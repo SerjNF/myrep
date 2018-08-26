@@ -1,5 +1,6 @@
 package ru.foreman.fleet;
 
+import ru.foreman.supportAndInterfase.FleetNumber;
 import ru.foreman.supportAndInterfase.Point;
 
 import java.util.ArrayList;
@@ -15,9 +16,9 @@ public class Fleet {
     // хранение занятых точек, для проверки при создании нового корабля
     private ArrayList<Point> useLocation = new ArrayList<>();
 
-    private int fleetNumber;
+    private FleetNumber fleetNumber;
 
-    public Fleet(int fleetNumber) {
+    public Fleet(FleetNumber fleetNumber) {
         initiateShips();
         this.fleetNumber = fleetNumber;
 
@@ -110,11 +111,11 @@ public class Fleet {
      */
     public static void main(String[] args) {
         long startTime = System.currentTimeMillis();
-        Fleet fleet = new Fleet(1);
+        Fleet fleet = new Fleet(FleetNumber.ONE);
         System.out.printf("execution time = %d ms", System.currentTimeMillis() - startTime);
     }
 
-    public int getFleetNumber() {
+    public FleetNumber getFleetNumber() {
         return fleetNumber;
     }
 }

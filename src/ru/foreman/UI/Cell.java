@@ -1,5 +1,6 @@
 package ru.foreman.UI;
 
+import ru.foreman.supportAndInterfase.FleetNumber;
 import ru.foreman.supportAndInterfase.Point;
 
 import javax.swing.*;
@@ -13,62 +14,32 @@ import java.awt.*;
  */
 public class Cell extends JButton {
     private Point point;
-    private int fleetNumber;
+    private FleetNumber fleetNumber;
+    private JButton button;
     // размеры, пока не нужны.
     private Dimension dimension = this.getSize();
 
-    public Cell() {
+    Cell(Point point, FleetNumber fleetNumber) {
         super();
-    }
-
-    Cell(Point point, int fleetNumber) {
+        super.setSize(new Dimension(100, 100));
         this.point = point;
         this.fleetNumber = fleetNumber;
+    }
+
+    @Override
+    public long getMultiClickThreshhold() {
+        return super.getMultiClickThreshhold();
     }
 
     public Point getPoint() {
         return point;
     }
 
-
-
-
-
-//    Point getPointToCompare() {
-//        return this.point;
-//       // System.out.printf("Click %d / %d%n", point.getX(), point.getY());
-//
-//    }
-
-    /* ***************************************************************************************************************/
-
-    /**
-     * test method
-     *
-     * @param args arg
-     */
-    public static void main(String[] args) {
-
-        JFrame frame = new JFrame();
-        JPanel panel = new JPanel();
-        panel.setLayout(new GridLayout(1, 2));
-
-        Cell cell = new Cell();
-        Cell cell1 = new Cell();
-
-
-        panel.add(cell);
-        panel.add(cell1);
-        frame.getContentPane().add(panel);
-        frame.setVisible(true);
-        frame.pack();
-
-
-        frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+    public FleetNumber getFleetNumber() {
+        return fleetNumber;
     }
 
-
-    public int getFleetNumber() {
-        return fleetNumber;
+    public void setResult(String msg){
+        this.setText(msg);
     }
 }

@@ -3,52 +3,58 @@ package ru.foreman.localGame;
 import ru.foreman.supportAndInterfase.Controller;
 import ru.foreman.UI.Cell;
 import ru.foreman.fleet.Fleet;
+import ru.foreman.supportAndInterfase.FleetNumber;
 
 
-import javax.swing.*;
-
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.util.HashMap;
 
 public class LocalGameController implements Controller {
-    private static Fleet fleet_1;
-    private static Fleet fleet_2;
-    private static int activeFleet = 1;
-    private JFrame frame;
+    private FleetNumber activeFleet = FleetNumber.ONE;
+    //   private JFrame frame;
+    private LocalGame localGame;
+    private HashMap<FleetNumber, Fleet> fleet = new HashMap<>();
 
-    public LocalGameController(JFrame frame) {
-        fleet_1 = new Fleet(1);
-        fleet_2 = new Fleet(2);
-        this.frame = frame;
+    LocalGameController(/*JFrame frame, */LocalGame localGame) {
+        fleet.put(FleetNumber.ONE, new Fleet(FleetNumber.ONE));
+        fleet.put(FleetNumber.TWO, new Fleet(FleetNumber.TWO));
+        //      this.frame = frame;
+        this.localGame = localGame;
     }
 
-    private static boolean checkShoot(Cell cell, int currentFleet) {
-        if (currentFleet == fleet_1.getFleetNumber()) {
-            return fleet_1.checkAllShipsToHit(cell.getPoint());
-        } else {
-            return fleet_2.checkAllShipsToHit(cell.getPoint());
-        }
+    private boolean isCheckShoot(Cell cell, FleetNumber currentFleet) {
+        return fleet.get(currentFleet).checkAllShipsToHit(cell.getPoint());
     }
 
+    public void compare(ActionEvent e) {
+        Cell cell = (Cell) e.getSource();
 
-    public void compare(Cell cell) {
-        int currentFleet = cell.getFleetNumber();
+        FleetNumber currentFleet = cell.getFleetNumber();
         if (currentFleet == activeFleet) {
-            setTextCell(cell, checkShoot(cell, currentFleet));
+            boolean checkShoot = isCheckShoot(cell, currentFleet);
+            setTextCell(cell, checkShoot, currentFleet);
         } else {
-            JOptionPane.showMessageDialog(frame, "Ходит другой игрок");
+            localGame.showMessage();
         }
     }
 
-    private static void setTextCell(Cell cell, boolean resShot) {
+    private void setTextCell(Cell cell, boolean resShot, FleetNumber currentFleet) {
         if (resShot) {
-            cell.setText("X");
+            cell.setResult("X");
+            if (currentFleet == FleetNumber.ONE) {
+                localGame.setLabelPlayer1();
+            } else {
+                localGame.setLabelPlayer2();
+            }
 
         } else {
-            cell.setText("0");
+            cell.setResult("0");
             changeFleet();
         }
     }
 
-    private static void changeFleet() {
-        activeFleet = activeFleet == 1 ? 2 : 1;
+    private void changeFleet() {
+        activeFleet = activeFleet == FleetNumber.ONE ? FleetNumber.TWO : FleetNumber.ONE;
     }
 }

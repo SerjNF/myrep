@@ -1,7 +1,8 @@
 package ru.foreman.UI;
 
-import ru.foreman.supportAndInterfase.Controller;
 import ru.foreman.localGame.LocalGameController;
+import ru.foreman.supportAndInterfase.Controller;
+import ru.foreman.supportAndInterfase.FleetNumber;
 
 import javax.swing.*;
 import java.awt.*;
@@ -14,13 +15,14 @@ import java.awt.*;
  * @since 06.18
  */
 public class PlayingField extends JPanel {
+    private int countShipFleet = 22;
     private JLabel northLabel;
     private JLabel southLabel;
 
-    public PlayingField(int fleetNumber, Controller controller) {
+    public PlayingField(FleetNumber fleetNumber, Controller controller) {
         super();
 
-        northLabel = new JLabel("north");
+        northLabel = new JLabel("Осталось подбить " + countShipFleet);
         northLabel.setHorizontalAlignment(SwingConstants.CENTER);
         northLabel.setHorizontalAlignment(SwingConstants.CENTER);
 
@@ -38,33 +40,37 @@ public class PlayingField extends JPanel {
         this.add(cellPanel);
     }
 
-    public void setNorthLabel(String text) {
-        northLabel.setText(text);
+    public void decrementCountShip() {
+        countShipFleet--;
     }
 
-    public void setSouthLabelLabel(String text) {
-        southLabel.setText(text);
+//    /**
+//     * Test method
+//     *
+//     * @param arg arg
+//     */
+//    public static void main(String[] arg) {
+//        JFrame frame = new JFrame();
+//        PlayingField panel = new PlayingField(FleetNumber.ONE, new LocalGameController(frame, this));
+//
+//
+//        frame.getContentPane().add(panel);
+//        frame.setVisible(true);
+//        frame.pack();
+//
+//
+//        frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+//    }
+
+    public void setNorthLabel() {
+        northLabel.setText("Осталось подбить " + countShipFleet);
     }
 
 
     /* *******************************************************************************************************************/
 
-    /**
-     * Test method
-     *
-     * @param arg arg
-     */
-    public static void main(String[] arg) {
-        JFrame frame = new JFrame();
-        PlayingField panel = new PlayingField(1, new LocalGameController(frame));
-
-
-        frame.getContentPane().add(panel);
-        frame.setVisible(true);
-        frame.pack();
-
-
-        frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+    public void setSouthLabelLabel(String text) {
+        southLabel.setText(text);
     }
 
 

@@ -1,8 +1,9 @@
 package ru.foreman.supportAndInterfase;
 
-import ru.foreman.UI.Cell;
+import java.awt.event.ActionEvent;
 
 public interface Controller {
 
-    void compare(Cell cell);
+    void compare(ActionEvent cell);
+
 }

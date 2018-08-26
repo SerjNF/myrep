@@ -1,6 +1,7 @@
 package ru.foreman.UI;
 
 
+import ru.foreman.supportAndInterfase.FleetNumber;
 import ru.foreman.supportAndInterfase.Point;
 
 import ru.foreman.supportAndInterfase.Controller;
@@ -8,6 +9,7 @@ import ru.foreman.supportAndInterfase.Controller;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
 import java.util.ArrayList;
 
 
@@ -17,18 +19,18 @@ import java.util.ArrayList;
  * @author SergeyNF
  * @since 06.18
  */
-public class CellPanel extends JPanel {
-    private ArrayList<Cell> cellList;
-    Controller controller;
+class CellPanel extends JPanel {
+  //  private ArrayList<Cell> cellList;
+    private Controller controller;
 
 
-    CellPanel(int fleetNumber, Controller controller) {
-        cellList = new ArrayList<>();
+    CellPanel(FleetNumber fleetNumber, Controller controller) {
+   //     cellList = new ArrayList<>();
         createFieldCells(fleetNumber);
         this.controller = controller;
     }
 
-    private void createFieldCells(int fleetNumber) {
+    private void createFieldCells(FleetNumber fleetNumber) {
         this.setLayout(new GridLayout(11, 11));
 
         this.add(new Label());
@@ -41,19 +43,17 @@ public class CellPanel extends JPanel {
 
             for (int i = 1; i < 11; ++i) {
                 Cell cell = new Cell(new Point(i, j), fleetNumber);
-                cell.addActionListener(e -> compare(cell));
+                cell.addActionListener(e -> controller.compare(e));
                 this.add(cell);
-                cellList.add(cell);
+  //              cellList.add(cell);
             }
         }
     }
 
-    private void compare(Cell cell){
+    private void compare(ActionEvent cell){
         controller.compare(cell);
 
     }
-
-
 
     private JLabel createLabel(int j) {
         String text = Integer.toString(j);
@@ -64,12 +64,7 @@ public class CellPanel extends JPanel {
         return label;
     }
 
-
-    ArrayList<Cell> getCellList() {
-        return cellList;
-    }
-
-    public void setVisible(boolean aFlag) {
-        super.setVisible(aFlag);
-    }
+//    public void setVisible(boolean aFlag) {
+//        super.setVisible(aFlag);
+//    }
 }

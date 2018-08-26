@@ -2,28 +2,55 @@ package ru.foreman.localGame;
 
 import ru.foreman.UI.PlayingField;
 import ru.foreman.supportAndInterfase.Controller;
+import ru.foreman.supportAndInterfase.FleetNumber;
 
 import javax.swing.*;
 import java.awt.*;
 
-public class LocalGame  {
+public class LocalGame {
+    private PlayingField playerOne;
+    private PlayingField playerTwo;
+    private JFrame frame;
 
     private LocalGame() {
+        try {
+            UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        this.frame = new JFrame("Локальная игра");
+        this.frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.frame.setLayout(new GridLayout(1, 3));
 
-        JFrame frame = new JFrame("Локальная игра");
-        frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        frame.setLayout(new GridLayout(1, 2));
+        Controller localGame = new LocalGameController(/*frame, */this);
+        playerOne = new PlayingField(FleetNumber.ONE, localGame);
+        playerTwo = new PlayingField(FleetNumber.TWO, localGame);
 
-        Controller controller = new LocalGameController(frame);
-        PlayingField playerOne = new PlayingField(1, controller);
-        PlayingField playerTwo = new PlayingField(2, controller);
-
-        frame.getContentPane().add(playerOne);
-        frame.getContentPane().add(playerTwo);
-
-        frame.setVisible(true);
-        frame.pack();
+        this.frame.getContentPane().add(playerOne);
+        //  frame.getContentPane().add(new JPanel());
+        this.frame.getContentPane().add(playerTwo);
+        // this.frame.setLocationRelativeTo(null);
+        this.frame.setVisible(true);
+        this.frame.setSize(1000, 500);
+        this.frame.setResizable(false);
+        //  this.frame.pack();
     }
+
+    void setLabelPlayer1() {
+        playerOne.decrementCountShip();
+        playerOne.setNorthLabel();
+    }
+
+    void setLabelPlayer2() {
+        playerTwo.decrementCountShip();
+        playerTwo.setNorthLabel();
+    }
+
+    void showMessage() {
+        JOptionPane.showMessageDialog(frame, "не ты ходишь, передай мышку!!!");
+    }
+
+
 
 
 
@@ -39,9 +66,12 @@ public class LocalGame  {
      * @param arg arg
      */
     public static void main(String[] arg) {
-        LocalGame localGame = new LocalGame();
-
+        SwingUtilities.invokeLater(() -> {
+            LocalGame localGame = new LocalGame();
+        });
     }
 
-
 }
+
+
+
