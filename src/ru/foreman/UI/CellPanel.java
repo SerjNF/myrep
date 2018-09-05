@@ -50,10 +50,6 @@ class CellPanel extends JPanel {
         }
     }
 
-    private void compare(ActionEvent cell){
-        controller.compare(cell);
-
-    }
 
     private JLabel createLabel(int j) {
         String text = Integer.toString(j);

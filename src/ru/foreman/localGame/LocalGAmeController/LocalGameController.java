@@ -12,14 +12,14 @@ import java.util.HashMap;
 
 public class LocalGameController implements Controller {
     private FleetNumber activeFleet = FleetNumber.ONE;
-    //   private JFrame frame;
+
     private LocalGame localGame;
     private HashMap<FleetNumber, Fleet> fleet = new HashMap<>();
 
     public LocalGameController(/*JFrame frame, */LocalGame localGame) {
         fleet.put(FleetNumber.ONE, new Fleet(FleetNumber.ONE));
         fleet.put(FleetNumber.TWO, new Fleet(FleetNumber.TWO));
-        //      this.frame = frame;
+
         this.localGame = localGame;
     }
 

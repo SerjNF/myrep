@@ -82,9 +82,8 @@ class Ship {
     }
 
     private Route selectRoute() {
-        int randomInt = random.nextInt(9);
         System.out.println("rotation");
-        if (randomInt < 5) {
+        if ( random.nextInt(9) < 5) {
             return Route.HORIZONTALLY;
         } else {
             return Route.VERTICALLY;
