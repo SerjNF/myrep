@@ -1,6 +1,7 @@
-package ru.foreman.localGame;
+package ru.foreman.localGame.ViewAndModel;
 
 import ru.foreman.UI.PlayingField;
+import ru.foreman.localGame.LocalGAmeController.LocalGameController;
 import ru.foreman.supportAndInterfase.Controller;
 import ru.foreman.supportAndInterfase.FleetNumber;
 
@@ -36,17 +37,17 @@ public class LocalGame {
         //  this.frame.pack();
     }
 
-    void setLabelPlayer1() {
+    public void setLabelPlayer1() {
         playerOne.decrementCountShip();
         playerOne.setNorthLabel();
     }
 
-    void setLabelPlayer2() {
+    public void setLabelPlayer2() {
         playerTwo.decrementCountShip();
         playerTwo.setNorthLabel();
     }
 
-    void showMessage() {
+    public void showMessage() {
         JOptionPane.showMessageDialog(frame, "не ты ходишь, передай мышку!!!");
     }
 

@@ -1,12 +1,12 @@
-package ru.foreman.localGame;
+package ru.foreman.localGame.LocalGAmeController;
 
+import ru.foreman.localGame.ViewAndModel.LocalGame;
 import ru.foreman.supportAndInterfase.Controller;
 import ru.foreman.UI.Cell;
 import ru.foreman.fleet.Fleet;
 import ru.foreman.supportAndInterfase.FleetNumber;
 
 
-import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.util.HashMap;
 
@@ -16,7 +16,7 @@ public class LocalGameController implements Controller {
     private LocalGame localGame;
     private HashMap<FleetNumber, Fleet> fleet = new HashMap<>();
 
-    LocalGameController(/*JFrame frame, */LocalGame localGame) {
+    public LocalGameController(/*JFrame frame, */LocalGame localGame) {
         fleet.put(FleetNumber.ONE, new Fleet(FleetNumber.ONE));
         fleet.put(FleetNumber.TWO, new Fleet(FleetNumber.TWO));
         //      this.frame = frame;

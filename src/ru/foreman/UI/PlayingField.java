@@ -1,6 +1,5 @@
 package ru.foreman.UI;
 
-import ru.foreman.localGame.LocalGameController;
 import ru.foreman.supportAndInterfase.Controller;
 import ru.foreman.supportAndInterfase.FleetNumber;
 
